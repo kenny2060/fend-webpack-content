@@ -1,4 +1,4 @@
-import nullStorySourceImg from '../img/satellite-dish-solid.svg'
+import nullStorySourceImg from '../img/wrecked-iphone.jpg'
 
 async function handleSubmit(event) {
     event.preventDefault()
@@ -10,12 +10,15 @@ async function handleSubmit(event) {
     getStoriesRes()
 
     async function getStoriesRes() {
-        let local_results = document.getElementById('local-results')
+        let local_results = document.getElementsByClassName('local-results')[0]
 
         const apiResponse = await fetch('/AllStories')
         try {
             const storyData = await apiResponse.json();
             for (var i = 0; i < storyData.length; i++) {
+                const storyDiv = document.createElement('div')
+                storyDiv.innerHTML = '<div id="' + storyData[i].id + '"></div>'
+
                 const storyTitle = document.createElement('h2')
                 const storyTitle_text = document.createTextNode(storyData[i].title)
 
@@ -25,18 +28,18 @@ async function handleSubmit(event) {
                 storyTitle.appendChild(storyTitle_text)
                 storySource.appendChild(storySource_text)
 
-                local_results.appendChild(storyTitle)
-                local_results.appendChild(storySource)
+                local_results.appendChild(storyDiv)
+                storyDiv.appendChild(storyTitle)
+                storyDiv.appendChild(storySource)
 
-                const storyImage = new Image(300, 300)
+                const storyImage = new Image(355, 200)
                 if (storyData[i].source.logo_url != null) {
-                    console.log("Medai URL request: ", storyData[i].media[0].url)
                     storyImage.src = storyData[i].media[0].url
-                    local_results.appendChild(storyImage)
+                    storyDiv.appendChild(storyImage)
                 } else {
-                    const nullStory = new Image(300, 300)
+                    const nullStory = new Image(355, 200)
                     nullStory.src = nullStorySourceImg
-                    local_results.appendChild(nullStory)
+                    storyDiv.appendChild(nullStory)
                 }
             }
         } catch (error) {
