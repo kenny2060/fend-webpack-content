@@ -10,14 +10,15 @@ async function handleSubmit(event) {
     getStoriesRes()
 
     async function getStoriesRes() {
-        let local_results = document.getElementsByClassName('local-results')[0]
+        let local_section = document.getElementsByClassName('section-news')[0]
 
         const apiResponse = await fetch('/AllStories')
         try {
             const storyData = await apiResponse.json();
             for (var i = 0; i < storyData.length; i++) {
                 const storyDiv = document.createElement('div')
-                storyDiv.innerHTML = '<div id="' + storyData[i].id + '"></div>'
+                storyDiv.classList.add('local-results')
+                storyDiv.id = storyData[i].id
 
                 const storyTitle = document.createElement('h2')
                 const storyTitle_text = document.createTextNode(storyData[i].title)
@@ -28,7 +29,7 @@ async function handleSubmit(event) {
                 storyTitle.appendChild(storyTitle_text)
                 storySource.appendChild(storySource_text)
 
-                local_results.appendChild(storyDiv)
+                local_section.insertAdjacentElement('beforeend', storyDiv)
                 storyDiv.appendChild(storyTitle)
                 storyDiv.appendChild(storySource)
 
