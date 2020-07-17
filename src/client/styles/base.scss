@@ -6,13 +6,13 @@ body {
 }
 
 h2 {
-    font-size: 16px;
+    font-size: 24px;
     margin-top: 8px;
 }
 
 p {
     font-size: 11px;
-    margin-top: 8px
+    margin-top: 16px
 }
 
 .grid_wrapper {
@@ -67,6 +67,7 @@ section {
 }
 
 #local-story_img {
+    margin: 24px 0;
     width: 355px;
     height: 200px;
     background-image: url("../img/anchorman2-banner.jpg");
