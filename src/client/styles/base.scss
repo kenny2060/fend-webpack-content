@@ -1,14 +1,80 @@
 body {
+    font-family: sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-main {
-    flex: 2;
+h2 {
+    font-size: 16px;
+}
+
+p {
+    font-size: 11px;
+}
+
+.grid_wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid: 20px;
+    grid-template-areas: 
+        "header"
+        "local-news"
+        "form"
+        "user-results"
+        "footer";
+}
+
+.main_head {
+    grid-area: header;
+}
+
+.main_local-news {
+    grid-area: local-news;
+}
+
+.main_form {
+    grid-area: form;
+}
+
+.main_user-results {
+    grid-area: user-results;
+}
+
+.main_footer {
+    grid-area: footer;
 }
 
 section {
+    min-width: 320px;
     max-width: 800px;
     margin: 50px auto;
 }
+
+.local-results {
+    margin: 16px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.local-results_text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+#local-story_img {
+    width: 200px;
+    height: 150px;
+    background-image: url("../img/anchorman2-banner.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}  
+  
+  
+  
+  
